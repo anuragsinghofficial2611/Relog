@@ -1,0 +1,156 @@
+/* Relog dashboard — dark, glassy, animated. */
+
+.relog-bg {
+  background:
+    radial-gradient(1100px 500px at 80% -10%, rgba(99, 102, 241, 0.14), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(34, 211, 238, 0.10), transparent 60%),
+    #070b14;
+}
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    conic-gradient(from 90deg at 50% -10%, transparent 0 40%, rgba(103, 232, 249, 0.06) 45%, transparent 55%),
+    transparent;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from { transform: rotate(0deg) scale(1); }
+  to   { transform: rotate(4deg) scale(1.06); }
+}
+
+main { position: relative; z-index: 1; }
+
+.panel {
+  animation: fadeUp .35s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Report cards */
+.report {
+  animation: slideIn .4s cubic-bezier(.22,.9,.36,1) both;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.report-enter { animation: slideIn .35s cubic-bezier(.22,.9,.36,1) both; }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.report .error-line {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+.report .ai {
+  border-left: 3px solid;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+#conn-pill .dot {
+  width: 7px; height: 7px; border-radius: 9999px;
+  background: currentColor;
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 9999px;
+}
+
+/* Modal */
+.modal { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(4, 7, 15, .7); backdrop-filter: blur(4px); }
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  background: #0b111f;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  box-shadow: 0 24px 60px -12px rgba(0,0,0,.6);
+  animation: fadeUp .25s ease both;
+}
+
+.label { display: block; font-size: 12px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px; }
+.input {
+  width: 100%;
+  border-radius: .75rem;
+  background: #0a0f1c;
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #e2e8f0;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.input:focus { border-color: rgba(34,211,238,.5); box-shadow: 0 0 0 3px rgba(34,211,238,.1); }
+.hint { font-size: 11px; color: #64748b; margin-top: 4px; }
+
+/* Toast */
+.toast {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: .75rem;
+  border: 1px solid rgba(255,255,255,.12);
+  background: #0c1220;
+  box-shadow: 0 12px 30px -8px rgba(0,0,0,.5);
+  animation: slideIn .25s ease both;
+}
+
+/* Live feed shimmer on a fresh card */
+.report.flash { box-shadow: 0 0 0 1px rgba(34,211,238,.35), 0 8px 30px -6px rgba(34,211,238,.25); }
